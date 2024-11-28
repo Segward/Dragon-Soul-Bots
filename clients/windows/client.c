@@ -49,6 +49,14 @@ int main() {
 
             Sleep(10000);
             CloseTask("brave.exe");
+            
+            printf("Here macros or scripts can be executed\n");
+            Sleep(20000);
+
+            response[0] = '\0';
+            snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/request-mac-join");
+            post_request(url, "", response, sizeof(response));
+            printf("request-win-join response: %s\n", response);
 
             continue;
         }
@@ -58,7 +66,7 @@ int main() {
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/clear-request");
             post_request(url, "", response, sizeof(response));
             printf("clear-request response: %s\n", response);
-            
+
             response[0] = '\0';
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/win-leave");
             post_request(url, "", response, sizeof(response));

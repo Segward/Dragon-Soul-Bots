@@ -64,8 +64,10 @@ int main() {
             post_request(url, "", response, sizeof(response));
             printf("request-win-join response: %s\n", response);
 
-            sleep(30);
-            printf("Now waiting stuff happens or not\n");
+            response[0] = '\0';
+            snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/request-win-join");
+            post_request(url, "", response, sizeof(response));
+            printf("request-win-join response: %s\n", response);
             
             continue;
         }
