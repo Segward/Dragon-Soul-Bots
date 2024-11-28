@@ -79,7 +79,7 @@ int main() {
             printf("clear-request response: %s\n", response);
 
             for (int i = 0; i < 30; ++i) {
-                sleep(1);
+                Sleep(1000);
                 printf("win-test: %d\n", i);
             }
 
