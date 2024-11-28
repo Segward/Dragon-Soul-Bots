@@ -5,7 +5,6 @@
 #include <string.h>
 #include "config.h"
 
-
 #if defined(_WIN32)
     #include "windows/curl/include/curl/curl.h"
 #elif defined(__APPLE__)

@@ -15,8 +15,6 @@ void signal_handler(int signal) {
 
 int main() {
 
-    printf("Windows client\n");
-
     signal(SIGINT, signal_handler);
     signal(SIGTERM, signal_handler);
     
