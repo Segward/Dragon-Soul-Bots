@@ -132,5 +132,3 @@ void CloseTask(char *task) {
 
     system(command);
 }
-
-void 

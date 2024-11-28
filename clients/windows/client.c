@@ -47,7 +47,7 @@ int main() {
             post_request(url, "", response, sizeof(response));
             printf("clear-request response: %s\n", response);
 
-            sleep(10000);
+            Sleep(10000);
             CloseTask("brave.exe");
 
             continue;
