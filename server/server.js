@@ -118,11 +118,6 @@ app.get("/get-request", (req, res) => {
   res.send(request+"");
 });
 
-app.post("/clear-request", (req, res) => {
-  request = null;
-  res.send("Request cleared");
-});
-
 app.get("/win-joined", (req, res) => {
   const joined = winServer === null ? false : true;
   res.send(joined+"");

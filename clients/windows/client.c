@@ -42,11 +42,6 @@ int main() {
             printf("win-join response: %s\n", response);
             OpenBrowser(response);
 
-            response[0] = '\0';
-            snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/clear-request");
-            post_request(url, "", response, sizeof(response));
-            printf("clear-request response: %s\n", response);
-
             Sleep(10000);
             CloseTask("brave.exe");
 
@@ -59,10 +54,6 @@ int main() {
         }
 
         if (strcmp(response, "win-leave") == 0) {
-            response[0] = '\0';
-            snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/clear-request");
-            post_request(url, "", response, sizeof(response));
-            printf("clear-request response: %s\n", response);
 
             response[0] = '\0';
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/win-leave");
@@ -73,10 +64,6 @@ int main() {
         }
 
         if (strcmp(response, "win-test") == 0) {
-            response[0] = '\0';
-            snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/clear-request");
-            post_request(url, "", response, sizeof(response));
-            printf("clear-request response: %s\n", response);
 
             for (int i = 0; i < 30; ++i) {
                 Sleep(1000);
