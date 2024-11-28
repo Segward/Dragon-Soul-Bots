@@ -42,13 +42,17 @@ int main() {
             printf("win-join response: %s\n", response);
             OpenBrowser(response);
 
-            Sleep(10000);
+            for (int i = 0; i < 20; ++i) {
+                sleep(1);
+                printf("win-wait: %d\n", i);
+            }
+
             CloseTask("brave.exe");
 
             response[0] = '\0';
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/request-mac-test");
             post_request(url, "", response, sizeof(response));
-            printf("clear-request response: %s\n", response);
+            printf("request-mac-test response: %s\n", response);
 
             continue;
         }
@@ -67,7 +71,7 @@ int main() {
 
             for (int i = 0; i < 30; ++i) {
                 Sleep(1000);
-                printf("win-test: %d\n", i);
+                printf("win-wait: %d\n", i);
             }
 
             response[0] = '\0';

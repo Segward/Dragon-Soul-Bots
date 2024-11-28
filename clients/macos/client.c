@@ -52,7 +52,11 @@ int main() {
             printf("mac-follow response: %s\n", response);
             OpenBrowser(response);
 
-            sleep(10);
+            for (int i = 0; i < 20; ++i) {
+                sleep(1);
+                printf("mac-wait: %d\n", i);
+            }
+
             CloseTask("Brave Browser");
 
             response[0] = '\0';
@@ -73,11 +77,11 @@ int main() {
             response[0] = '\0';
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/request-win-test");
             post_request(url, "", response, sizeof(response));
-            printf("clear-request response: %s\n", response);
+            printf("request-win-test response: %s\n", response);
 
             for (int i = 0; i < 30; ++i) {
                 sleep(1);
-                printf("mac-test: %d\n", i);
+                printf("mac-wait: %d\n", i);
             }
 
             continue;
