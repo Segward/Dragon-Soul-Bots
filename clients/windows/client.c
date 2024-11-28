@@ -49,14 +49,11 @@ int main() {
 
             Sleep(10000);
             CloseTask("brave.exe");
-            
-            printf("Here macros or scripts can be executed\n");
-            Sleep(20000);
 
             response[0] = '\0';
-            snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/request-mac-join");
+            snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/request-mac-test");
             post_request(url, "", response, sizeof(response));
-            printf("request-win-join response: %s\n", response);
+            printf("clear-request response: %s\n", response);
 
             continue;
         }
@@ -71,6 +68,25 @@ int main() {
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/win-leave");
             post_request(url, "", response, sizeof(response));
             printf("win-leave response: %s\n", response);
+
+            continue;
+        }
+
+        if (strcmp(response, "win-test") == 0) {
+            response[0] = '\0';
+            snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/clear-request");
+            post_request(url, "", response, sizeof(response));
+            printf("clear-request response: %s\n", response);
+
+            for (int i = 0; i < 30; ++i) {
+                sleep(1);
+                printf("win-test: %d\n", i);
+            }
+
+            response[0] = '\0';
+            snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/request-mac-join");
+            post_request(url, "", response, sizeof(response));
+            printf("request-win-join response: %s\n", response);
 
             continue;
         }

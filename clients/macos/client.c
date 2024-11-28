@@ -71,6 +71,25 @@ int main() {
             
             continue;
         }
+
+        if (strcmp(response, "mac-test") == 0) {
+            response[0] = '\0';
+            snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/clear-request");
+            post_request(url, "", response, sizeof(response));
+            printf("clear-request response: %s\n", response);
+
+            response[0] = '\0';
+            snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/request-win-test");
+            post_request(url, "", response, sizeof(response));
+            printf("clear-request response: %s\n", response);
+
+            for (int i = 0; i < 10; ++i) {
+                sleep(1);
+                printf("mac-test: %d\n", i);
+            }
+
+            continue;
+        }
     }
 
     return 0;

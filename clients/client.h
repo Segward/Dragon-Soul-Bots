@@ -111,15 +111,13 @@ void signal_handler(int signal) {
 }
 
 void OpenBrowser(char *url) {
-    char command[4096];
-
     #if defined(_WIN32)
         ShellExecute(0, 0, url, 0, 0, SW_SHOWNORMAL);
     #elif defined(__APPLE__)
+        char command[4096];
         snprintf(command, sizeof(command), "open \"%s\"", url);
+        system(command);
     #endif
-
-    system(command);
 }
 
 void CloseTask(char *task) {

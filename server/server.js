@@ -104,6 +104,16 @@ app.post("/request-win-join", (req, res) => {
   res.send("Requesting win join");
 });
 
+app.post("/request-mac-test", (req, res) => {
+  request = "mac-test";
+  res.send("Requesting test");
+});
+
+app.post("/request-win-test", (req, res) => {
+  request = "win-test";
+  res.send("Requesting test");
+});
+
 app.get("/get-request", (req, res) => {
   res.send(request+"");
 });
