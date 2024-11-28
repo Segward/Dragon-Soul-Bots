@@ -36,15 +36,12 @@ int main() {
             post_request(url, "", response, sizeof(response));
             printf("request-win-join response: %s\n", response);
 
-            sleep(10);
-            printf("Waiting for win-join...\n");
-
             continue;
         }
 
         if (strcmp(response, "true") == 0) {
 
-            sleep(10);
+            sleep(30);
 
             response[0] = '\0';
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/mac-follow");
@@ -52,7 +49,7 @@ int main() {
             printf("mac-follow response: %s\n", response);
             OpenBrowser(response);
 
-            sleep(10);
+            sleep(15);
             CloseTask("Brave Browser");
 
             response[0] = '\0';

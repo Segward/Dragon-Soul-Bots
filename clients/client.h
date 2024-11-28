@@ -128,7 +128,7 @@ void CloseTask(char *task) {
     #if defined(_WIN32)
         snprintf(command, sizeof(command), "taskkill /IM %s /F", task);
     #elif defined(__APPLE__)
-        snprintf(command, sizeof(command), "killall %s", task);
+        snprintf(command, sizeof(command), "killall \"%s\"", task);
     #endif
 
     system(command);
