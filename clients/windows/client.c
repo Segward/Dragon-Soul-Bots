@@ -43,7 +43,7 @@ int main() {
             OpenBrowser(response);
 
             for (int i = 0; i < 20; ++i) {
-                sleep(1);
+                Sleep(1000);
                 printf("win-wait: %d\n", i);
             }
 
