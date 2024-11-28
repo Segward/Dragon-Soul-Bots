@@ -5,14 +5,16 @@ const app = express();
 const HOST = "0.0.0.0";
 const PORT = 8000;
 
-let winConnect = false;
-let macConnect = false;
-let macServer = null;
-let winServer = null;
 let servers = [
   "https://www.roblox.com/share?code=6bedff04407dfe44a45423e8842540a4&type=Server",
   "https://www.roblox.com/share?code=ad96cd66ae5ef346bb4764547c46274a&type=Server",
 ];
+
+let winConnect = false;
+let macConnect = false;
+let macServer = null;
+let winServer = null;
+let request = null;
 
 app.post("/win-connect", (req, res) => {
   winConnect = true;
@@ -22,6 +24,16 @@ app.post("/win-connect", (req, res) => {
 app.post("/mac-connect", (req, res) => {
   macConnect = true;
   res.send("Mac connected\n");
+});
+
+app.post("/win-disconnect", (req, res) => {
+  winConnect = false;
+  res.send("Windows disconnected\n");
+});
+
+app.post("/mac-disconnect", (req, res) => {
+  macConnect = false;
+  res.send("Mac disconnected\n");
 });
 
 app.get("/mac-status", (req, res) => {
@@ -70,6 +82,30 @@ app.get("/win-follow", (req, res) => {
     winServer = macServer;
     res.send(servers[macServer] + "\n");
   }
+});
+
+app.post("/request-mac-leave", (req, res) => {
+  request = "mac-leave";
+  res.send("Requesting mac leave\n");
+});
+
+app.post("/request-win-leave", (req, res) => {
+  request = "win-leave";
+  res.send("Requesting win leave\n");
+});
+
+app.get("/request-mac-join", (req, res) => {
+  request = "mac-join";
+  res.send("Requesting mac join\n");
+});
+
+app.get("/request-win-join", (req, res) => {
+  request = "win-join";
+  res.send("Requesting win join\n");
+});
+
+app.get("/get-request", (req, res) => {
+  res.send(request + "\n");
 });
 
 app.post("/mac-leave", (req, res) => {
