@@ -41,7 +41,7 @@ int main() {
 
         if (strcmp(response, "true") == 0) {
 
-            sleep(15);
+            sleep(30);
 
             response[0] = '\0';
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/mac-follow");
