@@ -39,9 +39,16 @@ int main() {
             continue;
         }
 
-        if (strcmp(response, "true") == 0) {
-
-            sleep(30);
+        response[0] = '\0';
+        snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/get-request");
+        get_request(url, response, sizeof(response));
+        printf("get-request response: %s\n", response);
+        
+        if (strcmp(response, "mac-join") == 0) {
+            response[0] = '\0';
+            snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/clear-request");
+            post_request(url, "", response, sizeof(response));
+            printf("clear-request response: %s\n", response);
 
             response[0] = '\0';
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/mac-follow");
@@ -57,6 +64,9 @@ int main() {
             post_request(url, "", response, sizeof(response));
             printf("request-win-join response: %s\n", response);
 
+            sleep(30);
+            printf("Now waiting stuff happens or not\n");
+            
             continue;
         }
     }
