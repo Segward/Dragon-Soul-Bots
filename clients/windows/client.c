@@ -40,7 +40,7 @@ int main() {
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/win-join");
             post_request(url, "", response, sizeof(response));
             printf("win-join response: %s\n", response);
-            OpenBrowser("https://www.roblox.com/share?code=6bedff04407dfe44a45423e8842540a4&type=Server");
+            OpenBrowser('"https://www.roblox.com/share?code=6bedff04407dfe44a45423e8842540a4&type=Server"');
 
             response[0] = '\0';
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/clear-request");
