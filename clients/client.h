@@ -4,7 +4,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include "config.h"
-#include "curl/include/curl/curl.h"
+
+
+#if defined(_WIN32)
+    #include "windows/curl/include/curl/curl.h"
+#elif defined(__APPLE__)
+    #include <curl/curl.h>
+#endif
 
 size_t write_callback(void *ptr, size_t size, size_t nmemb, void *data) {
     size_t realsize = size * nmemb;

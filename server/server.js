@@ -2,7 +2,7 @@
 
 const express = require("express");
 const app = express();
-const HOST = "0.0.0.0";
+const HOST = "192.168.0.180";
 const PORT = 8000;
 
 let servers = [

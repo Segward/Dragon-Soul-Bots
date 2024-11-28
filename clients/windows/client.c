@@ -1,7 +1,8 @@
 // client.c
 
+#include <windows.h>
+#include <signal.h>
 #include "../client.h"
-#include <unistd.h>
 
 void signal_handler(int signal) {
     char response[4096];
@@ -14,6 +15,8 @@ void signal_handler(int signal) {
 
 int main() {
 
+    printf("Windows client\n");
+
     signal(SIGINT, signal_handler);
     signal(SIGTERM, signal_handler);
     
@@ -25,7 +28,7 @@ int main() {
 
     while (1) {
         
-        sleep(1);
+        Sleep(1000);
 
         response[0] = '\0';
         snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/mac-status");
