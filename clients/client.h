@@ -113,9 +113,9 @@ void OpenBrowser(char *url) {
     char command[4096];
 
     #if defined(_WIN32)
-        snprintf(command, sizeof(command), "start %s", url);
+        snprintf(command, sizeof(command), "start \"%s\"", url);
     #elif defined(__APPLE__)
-        snprintf(command, sizeof(command), "open %s", url);
+        snprintf(command, sizeof(command), "open \"%s\"", url);
     #endif
 
     system(command);
