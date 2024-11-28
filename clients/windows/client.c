@@ -4,15 +4,6 @@
 #include <signal.h>
 #include "../client.h"
 
-void signal_handler(int signal) {
-    char response[4096];
-    char url[4096];
-    snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/win-disconnect");
-    post_request(url, "", response, sizeof(response));
-    printf("\nResponse: %s", response);
-    exit(0);
-}
-
 int main() {
 
     signal(SIGINT, signal_handler);
@@ -49,6 +40,7 @@ int main() {
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/win-join");
             post_request(url, "", response, sizeof(response));
             printf("win-join response: %s\n", response);
+            OpenURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 
             response[0] = '\0';
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/clear-request");

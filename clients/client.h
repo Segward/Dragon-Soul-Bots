@@ -93,3 +93,30 @@ void post_request(char *url, char *data, char *response, size_t response_size) {
     curl_easy_cleanup(curl);
     curl_global_cleanup();
 }
+
+void signal_handler(int signal) {
+    char response[4096];
+    char url[4096];
+
+    #if defined(_WIN32)
+        snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/win-disconnect");
+    #elif defined(__APPLE__)
+        snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/mac-disconnect");
+    #endif
+
+    post_request(url, "", response, sizeof(response));
+    printf("\nResponse: %s", response);
+    exit(0);
+}
+
+void OpenURL(char *url) {
+    char command[4096];
+
+    #if defined(_WIN32)
+        snprintf(command, sizeof(command), "start %s", url);
+    #elif defined(__APPLE__)
+        snprintf(command, sizeof(command), "open %s", url);
+    #endif
+
+    system(command);
+}

@@ -2,6 +2,7 @@
     "files.associations": {
         "client.h": "c",
         "config.h": "c",
-        "curl.h": "c"
+        "curl.h": "c",
+        "windows.h": "c"
     }
 }

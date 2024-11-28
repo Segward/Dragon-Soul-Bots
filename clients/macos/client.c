@@ -3,15 +3,6 @@
 #include "../client.h"
 #include <unistd.h>
 
-void signal_handler(int signal) {
-    char response[4096];
-    char url[4096];
-    snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/mac-disconnect");
-    post_request(url, "", response, sizeof(response));
-    printf("\nResponse: %s", response);
-    exit(0);
-}
-
 int main() {
 
     signal(SIGINT, signal_handler);
@@ -50,6 +41,7 @@ int main() {
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/mac-follow");
             get_request(url, response, sizeof(response));
             printf("mac-follow response: %s\n", response);
+            OpenURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
             sleep(5);
 
             response[0] = '\0';
