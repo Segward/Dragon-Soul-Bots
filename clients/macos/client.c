@@ -50,7 +50,7 @@ int main() {
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/mac-follow");
             get_request(url, response, sizeof(response));
             printf("mac-follow response: %s\n", response);
-            OpenBrowser("https://www.roblox.com/share?code=6bedff04407dfe44a45423e8842540a4&type=Server");
+            OpenBrowser(response);
 
             sleep(10);
             CloseTask("Brave Browser");

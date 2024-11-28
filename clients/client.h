@@ -6,6 +6,7 @@
 #include "config.h"
 
 #if defined(_WIN32)
+    #include <windows.h>
     #include "windows/curl/include/curl/curl.h"
 #elif defined(__APPLE__)
     #include <curl/curl.h>
@@ -113,7 +114,7 @@ void OpenBrowser(char *url) {
     char command[4096];
 
     #if defined(_WIN32)
-        snprintf(command, sizeof(command), "start \"%s\"", url);
+        ShellExecute(0, 0, url, 0, 0, SW_SHOWNORMAL);
     #elif defined(__APPLE__)
         snprintf(command, sizeof(command), "open \"%s\"", url);
     #endif
