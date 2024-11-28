@@ -40,12 +40,15 @@ int main() {
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/win-join");
             post_request(url, "", response, sizeof(response));
             printf("win-join response: %s\n", response);
-            OpenURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+            OpenBrowser(response);
 
             response[0] = '\0';
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/clear-request");
             post_request(url, "", response, sizeof(response));
             printf("clear-request response: %s\n", response);
+
+            sleep(10000);
+            CloseTask("brave.exe");
 
             continue;
         }
@@ -55,6 +58,7 @@ int main() {
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/win-leave");
             post_request(url, "", response, sizeof(response));
             printf("win-leave response: %s\n", response);
+            CloseTask("RobloxPlayerBeta.exe");
 
             response[0] = '\0';
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/clear-request");

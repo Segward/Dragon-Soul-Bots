@@ -35,19 +35,31 @@ int main() {
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/request-win-join");
             post_request(url, "", response, sizeof(response));
             printf("request-win-join response: %s\n", response);
-            sleep(5);
+
+            sleep(10);
+            printf("Waiting for win-join...\n");
+
+            continue;
+        }
+
+        if (strcmp(response, "true") == 0) {
+
+            sleep(10);
 
             response[0] = '\0';
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/mac-follow");
             get_request(url, response, sizeof(response));
             printf("mac-follow response: %s\n", response);
-            OpenURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-            sleep(5);
+            OpenBrowser(response);
+
+            sleep(10);
+            CloseTask("Brave Browser");
 
             response[0] = '\0';
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/request-win-leave");
             post_request(url, "", response, sizeof(response));
             printf("request-win-join response: %s\n", response);
+
             continue;
         }
     }

@@ -109,7 +109,7 @@ void signal_handler(int signal) {
     exit(0);
 }
 
-void OpenURL(char *url) {
+void OpenBrowser(char *url) {
     char command[4096];
 
     #if defined(_WIN32)
@@ -120,3 +120,17 @@ void OpenURL(char *url) {
 
     system(command);
 }
+
+void CloseTask(char *task) {
+    char command[4096];
+
+    #if defined(_WIN32)
+        snprintf(command, sizeof(command), "taskkill /IM %s /F", task);
+    #elif defined(__APPLE__)
+        snprintf(command, sizeof(command), "killall %s", task);
+    #endif
+
+    system(command);
+}
+
+void 
