@@ -41,7 +41,7 @@ int main() {
 
         if (strcmp(response, "true") == 0) {
 
-            sleep(30);
+            sleep(5);
 
             response[0] = '\0';
             snprintf(url, sizeof(url), "http://%s:%d%s", HOST, PORT, "/mac-follow");
@@ -49,7 +49,7 @@ int main() {
             printf("mac-follow response: %s\n", response);
             OpenBrowser(response);
 
-            sleep(15);
+            sleep(10);
             CloseTask("Brave Browser");
 
             response[0] = '\0';
