@@ -1,4 +1,4 @@
-# Dragon soul bots
+# Server Client Bots
 
 # Curl
 Curl 8.11.0 for 64-bit on windows was downloaded [here](https://curl.se/windows/) <br />
